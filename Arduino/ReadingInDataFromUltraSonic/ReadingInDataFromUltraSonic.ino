@@ -7,7 +7,6 @@ long duration;
 int distance;
 const int numReadings = 30;
 
-int readings[numReadings];      // the readings from the analog input
 int readIndex = 0;              // the index of the current reading
 float total = 0;                  // the running total
 int average = 0;                // the average 
@@ -42,7 +41,6 @@ void loop() {
       delay(40);
 }
 //
-// returns the number of CM of the distance
 int GetDistanceData(){
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
