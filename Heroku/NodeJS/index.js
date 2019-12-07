@@ -23,6 +23,8 @@ const server = express()
   	let sensor1Status = false;
   	let sensor2Status = false;
   	let secretStatus = false;
+    let statusCode = 'null';
+   //  response.send("END");
   	console.log("AT CHECKS");
   	//console.log(response);
   	secretStatus = checkSecret(request.body.secret);
@@ -30,40 +32,38 @@ const server = express()
   		console.log("secret passed");
   	}
   	else{
-  			response.status(400);
-  			response.end();
+  			statusCode = '404';
+  	//		response.send("END");
   	}
   	sensor1Status = checkSensor(request.body.sensor1);
   	if(sensor1Status){
   		console.log("sensor1Status passed");
   	}
     else{
-        response.status(400);
-        response.end();
+        statusCode = '404';
+    //    response.send("END");
     }
   	sensor2Status = checkSensor(request.body.sensor2);
   	if(sensor2Status){
   		console.log("sensor2Status passed");
   	}
     else{
-        response.status(400);
-        response.end();
+        statusCode = '404';
+//response.send("END");
     }
   	if(secretStatus && sensor1Status && sensor2Status){
   		console.log("ALL TRUE");
   		let CollectionData = JSON.parse('{ "sensor1":'+ request.body.sensor1 +', "sensor2":'+ request.body.sensor2 +'}');
-  		io.emit('sensors', CollectionData);
-  		response.status(100);
-  		response.end("PASSED");
+       io.emit('sensors', CollectionData);
+      statusCode = '101';
+
+  		//response.send("PASSED");
   		//console.log(CollectionData);
   	//io.emit('news', CollectionData);
   	}
-  	else{
-  	response.status(400);
-  	response.end();
-  	}
+   // response.status(statusCode);
+    response.send(statusCode);
   	//Socket io emit on the 'news' event
-  	response.end();
 })
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
