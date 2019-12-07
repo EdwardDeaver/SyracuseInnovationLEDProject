@@ -1,0 +1,5 @@
+ofxGui
+ofxLibwebsockets
+ofxNetwork
+ofxOPC
+ofxVectorGraphics

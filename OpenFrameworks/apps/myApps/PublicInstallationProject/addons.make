@@ -1,4 +1,0 @@
-ofxGui
-ofxNetwork
-ofxOPC
-ofxVectorGraphics
