@@ -20,6 +20,6 @@
 * NodeJS 
 * Scecret key set in the Heroku instance configuration
 
-# Webiste Requirements
+# Website Requirements
 ## Github IO
 * Nothing. 
