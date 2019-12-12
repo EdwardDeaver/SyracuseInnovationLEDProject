@@ -7,7 +7,7 @@
 * 2x Ultrasonic Distance Sensor - 3V or 5V - HC-SR04 compatible - RCWL-1601 
 * 1x Mac OS device
 * 1x FadeCandy
-* 4x WS8212 Neopixel lights (60 LEDS/M)
+* 4x WS8211 Neopixel lights (60 LEDS/M)
 
 ## Software Requirements
 
