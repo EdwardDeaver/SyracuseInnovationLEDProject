@@ -1,6 +1,6 @@
 # SyracuseInnovationLEDProject
 
-# Localhost requirments 
+# Localhost Requirements 
 ## Physical Materials
 
 * 2x Adarfruit Huzzah ESP8266 boards
@@ -9,17 +9,17 @@
 * 1x FadeCandy
 * 4x WS8212 Neopixel lights (60 LEDS/M)
 
-## Software Requirments
+## Software Requirements
 
 * Mac OS version 10.13.6
 * Python 3
 * CP210x USB to UART Bridge VCP Drivers from SiLabs https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 
-# Server requirements
+# Server Requirements
 ## Heroku
 * NodeJS 
 * Scecret key set in the Heroku instance configuration
 
-# Webiste Requirments
+# Webiste Requirements
 ## Github IO
 * Nothing. 
