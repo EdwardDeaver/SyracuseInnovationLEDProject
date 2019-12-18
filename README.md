@@ -10,7 +10,8 @@
 * 4x WS8211 Neopixel lights (60 LEDS/M)
 
 ## Software Requirements
-
+* MongoDB Community Edition
+* Brew
 * Mac OS version 10.13.6
 * Python 3
 * CP210x USB to UART Bridge VCP Drivers from SiLabs https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
