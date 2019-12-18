@@ -11,6 +11,8 @@ OPENFRAMEWORKSPATH="/OpenFrameworks/apps/myApps/PublicInstallationProject/bin/Pu
 PYTHONAPPPATH="/python/UDPSERVER.py"
 #OPENS OPENFRAMEWORKS APP
 open "$SCRIPTPATH$OPENFRAMEWORKSPATH"
+#RUNS MONGODB
+mongod --config /usr/local/etc/mongod.conf --fork
 #RUNS PYTHON3 APP 
 python3 "$SCRIPTPATH$PYTHONAPPPATH"
 #FORCES MAC TO NOT SLEEP
