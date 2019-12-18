@@ -230,6 +230,8 @@ void ofApp::update()
             opcClient.writeChannel(i+1, strips[i].colorData());
         }
     }
+    
+  
     ofSoundUpdate();
     //ofLogNotice() << "amount: " << ofToString(sentAmount);
     //ofLogNotice() << "max: " << ofToString(sentMAX);
@@ -238,7 +240,7 @@ void ofApp::update()
     // So if I want my app to update the server ever 2 seconds then I want to incremement an amount every frame then check if it is 2 x CurrentFramerate
     // Then reset the amount
     if(sentAmount < sentMAX){
-        sendToUDP(newx1, newx2, newx1);
+        sendToUDP(newx1, newx2, ofGetUnixTime());
          //ofLogNotice() << "value: " << ofToString(sentAmount);
          sentAmount++;
     }
@@ -246,10 +248,11 @@ void ofApp::update()
         sentAmount++;
     }
     
-    if(sentAmount>=ofGetFrameRate()*0.5){
+    if(sentAmount>=ofGetFrameRate()*10){
         sentAmount = 0;
-     //  newx1 = ofRandom(14000);
-      //  newx2 = ofRandom(14000);
+       //newx1 = ofRandom(7000);
+       // newx2 = ofRandom(7000);
+
     }
 }
 //--------------------------------------------------------------

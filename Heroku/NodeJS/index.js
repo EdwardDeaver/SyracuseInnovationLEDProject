@@ -53,7 +53,7 @@ const server = express()
     }
   	if(secretStatus && sensor1Status && sensor2Status){
   		console.log("ALL TRUE");
-  		let CollectionData = JSON.parse('{ "sensor1":'+ request.body.sensor1 +', "sensor2":'+ request.body.sensor2 +'}');
+  		let CollectionData = JSON.parse('{ "sensor1":'+ request.body.sensor1 +', "sensor2":'+ request.body.sensor2 +', "sentTime":'+ request.body.timesent+'}');
        io.emit('sensors', CollectionData);
       statusCode = '101';
 
@@ -130,5 +130,4 @@ io.on('connection', (socket) => {
 });
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-
 

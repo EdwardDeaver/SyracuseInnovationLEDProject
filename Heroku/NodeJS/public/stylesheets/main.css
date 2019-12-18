@@ -1,27 +1,84 @@
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
 
+.jumbotron {
+  background: none;
+}
+
+
+.top{
+background: rgb(19,236,178);
+background: -moz-linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(255,0,178,1) 100%);
+background: -webkit-linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(255,0,178,1) 100%);
+background: linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(255,0,178,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#13ecb2",endColorstr="#ff00b2",GradientType=1);
+min-height: 100vh;
+height:100%;
+}
+
+#status{
+      background-color: rgba(90,90,0,0);
+    }
+.animation{
+        background-color: rgba(0,255,0,0);
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 10s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 10s;
+    }
+
+
+    /* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+  0% {background-color: rgba(0,255,0,0);}
+  50% {background-color: rgba(0,255,0,1);}
+  100% {background-color: rgba(0,255,0,0);}
+
+}
+
+/* Standard syntax */
+@keyframes example {
+  0% {background-color: rgba(0,255,0,0);}
+  50% {background-color: rgba(0,255,0,1);}
+  100% {background-color: rgba(0,255,0,0);}
+}
+
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  vertical-align: middle;
+  display: inline-block;
+  border:1px solid black;
+
+}
+
+#DevicesDefinitions{
+  border-top: 5px white dashed;
+background: #3498DB;
+  height:100vh;
+}
+
+
+.middle{
+  background: rgb(19,236,178);
+background: -moz-linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(46,117,206,1) 100%);
+background: -webkit-linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(46,117,206,1) 100%);
+background: linear-gradient(180deg, rgba(19,236,178,1) 0%, rgba(46,117,206,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#13ecb2",endColorstr="#2e75ce",GradientType=1);
+min-height: 100vh;
+height:100%;
+
+}
+
+
+.definitionsimage{
+  width:10%; 
+  height:10%;
+
+
+}
+
+#Definitions .list-group ul .list-group-item { 
+background: rgba(255,255,255,0.7);
+ }

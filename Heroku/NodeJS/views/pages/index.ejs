@@ -2,87 +2,114 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-</head>
+  <style>
+    .no-gutters {
+  margin-right: 0;
+  margin-left: 0;
 
-<body>
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+</style>
+</head>
+<body data-spy="scroll" data-target="#navbar" data-offset="0">
 
   <% include ../partials/nav.ejs %>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=" crossorigin="anonymous"></script>
+    
+<div class="container-fluid ">
+  <div id="Home"class="row top">
+    <div class="col-12 p-0" style="border:5px solid blue;">
+      <div class="jumbotron min-vh-100 m-0 ">
+        <h1 class="display-1" >SMART LIGHTS PROJECT</h1>
+        <h1  class="display-2">Sensor 1: <span id="sensor1"></span></h1>
+        <h1 class="display-2" >Sensor 2: <span id="sensor2"></span></h1>
+        <h6 class="display-2" >Time sent: <span id="server-time"></span></h6>
+        <p class="lead text-white">This is the webpage for the LED Instalation project. Here you fill find all the definitions used in the project, further explinations of how the LED project works and the code used in the project. </p>
 
-
-<script>
-  var socket = io();
-  var el;
-
-  socket.on('time', function(timeString) {
-    el = document.getElementById('server-time')
-    el.innerHTML = 'Server time: ' + timeString;
-  });
-socket.on('sensors', function(data) {
-    console.log(data);
-    console.log(data.sensor1);
-    console.log(data.sensor2);
-    document.getElementById("sensor1").innerHTML = ""+data.sensor1;
-    document.getElementById("sensor2").innerHTML = ""+data.sensor2;
-  });
-</script>
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/lang-logo.png">
-    </a>
-    <h1 id="server-time">Getting Started with Node on Heroku</h1>
-    <h1 >Sensor 1: <span id="sensor1"> </span></h1>
-    <h1 >Sensor 2: <span id="sensor2"> </span></h1>
-
-
-    <p>This is a sample Node application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span> Getting Started with Node</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-js-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+      </div>
+    </div>
   </div>
 </div>
-<div class="container">
-  <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" class="alert-link">Getting Started with Node on Heroku</a> tutorial.
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/node-js-getting-started">Heroku Button</a> on the repository.</li>
+<div class="container-fluid ">
+  <div id="Purpose" class="row top">
+    <div class="col-12 p-0" style="border:5px solid blue;">
+      <div class="jumbotron min-vh-100 m-0 ">
+        <h1 class="display-1" >Purpose</h1>
 
-        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/node-js-getting-started/blob/master/package.json">package.json</a>, creating a deployable slug.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-      <ul>
-        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
-        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-        <ul>
-          <li><code>git clone https://github.com/heroku/node-js-getting-started.git</code> - this will create a local copy of the source code for the app</li>
-          <li><code>cd node-js-getting-started</code> - change directory into the local source code repository</li>
-          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
-          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#push-local-changes">deploy changes</a> to Heroku</li>
+        <p class="lead display-6 text-white">First it should be understood why citizen’s knowledge of “smart” things is important. Governments are currently having vendors try to sell them facial recognition software, ways to monetize citizens data, and artificial intelligence solutions.  This system itself will not produce a complete understanding of “smart” things by the entire public, but it can provide a jumping off point to explore ideas. First, the project will try to help the understandings of “smart” through the use of radical transparency of the system. Radical transparency is a business philosophy based on total openness. It is similar in some respects to the open source ethos.  Second, I have created technology definitions for parts of the system that are defined using the lowest technology literacy rate of a given area to create simple definitions. Though I do not know how to define technology literacy rates I have made sure the definitions use metaphors that relate to devices the reader probably has interacted with. The project relies on two these parts to accomplish the mission because when transparency increases in a [governmental] system it acts as a multiplier on preconceived notions of government to reinforce those held ideas.  Researchers at the Utrecht University Netherlands conducted a study(N=658) to test the link of transparency of government and trust. The researchers found that due to preexisting ideas of government that people had the effects of transparency were not prominent in increasing trust.  
+        
+        It is possible to change these preconceived notions. In advertising,  agencies have been doing it for years. Agencies like like DoSomething.org and the AdCouncil participate in advocacy or education related advertising campaigns.   At the federal government level there has been the creation of code.gov to show what open source projects the federal government has made and is currently sharing.
+
+        </p>
+
+        <ul class="text-white">
+          <li>  Sources:  </li>
+          <ul>
+            <li> <sub> ACLU, “How to Stop ‘Smart Cities’ From Becoming ‘Surveillance Cities’”. https://www.aclu.org/blog/privacy-technology/surveillance-technologies/how-stop-smart-cities-becoming-surveillance-cities</sub> </li>
+            <li> <sub>  “Ad Council.” AdCouncil. Accessed December 4, 2019. https://www.adcouncil.org/.</sub> </li>
+            <li> <sub>  “Code.gov.” Code.gov. Accessed December 4, 2019. https://code.gov/.</sub> </li>
+            <li> <sub>  Fishman, Marina. “How to Do Radical Transparency Right as a Manager.” Copper. Copper, August 20, 2019. https://www.copper.com/blog/radical-transparency.</sub> </li>
+            <li> <sub>  Grimmelikhuijsen, Stephan. (2010). Transparency of Public Decision-Making: Towards Trust in Local Government?. Policy & Internet. 2. 10.2202/1944-2866.1024. </sub> </li>
+            <li> <sub>  Grimmelikhuijsen, Stephan. (2012). Linking Transparency, Knowledge and Citizen Trust in Government: An Experiment. International Review of Administrative Sciences - INT REV ADM SCI. 78. 50-73. 10.1177/0020852311429667. </sub> </li>
+            <li> <sub> “Let's Do This!” Let's Do This! | DoSomething.org. Accessed December 4, 2019. https://www.dosomething.org/us. </sub> </li>
+            <li> <sub> “What Is Open Source?” Opensource.com. Accessed December 4, 2019. https://opensource.com/resources/what-open-source. </sub> </li>
+            <li> <sub>  Wolff, Martijn, and W E Biernatzki. “The Social and Cultural Effects of Advertising .” Communication Research Trends 14, no. 1 (1994): 34–34. http://cscc.scu.edu/trends/v14/V14_1.pdf.</sub> </li>
+          </ul>
         </ul>
-      </ul>
-      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started with Node on Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/deploying-nodejs">Deploying Node Apps on Heroku</a></li>
-      </ul>
+
+      </div>
     </div>
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
   </div>
 </div>
+<div class="container-fluid ">
+<!-- DEFINITIONS -->
+   <div  id="Definitions"class="row middle">
+    <div class="col-12 p-0" style="border:5px solid blue;">
+      <div class="jumbotron min-vh-100 m-0 ">
+        <h1 class="display-1" >Definitions</h1>
+        <ul class="list-group">
+          <li class="list-group-item">"Arduino"</li>
+          <ul>
+            <li class="list-group-item">Product name: Adafruit Huzzah ESP8266</li>
+            <li class="list-group-item">Definition: This is a “microcontroller”. It’s a device that are told to do one thing and they do it forever. They are similar to how your cell phone works but instead of being able to run multiple apps at once, they can only run 1 app. </li>
+            <li class="list-group-item">Product picture: <img class="definitionsimage" src="images/parts/ESP8266.png" /></li>
+          </ul>
+          <li class="list-group-item">"Motion sensor"</li>
+          <ul>
+            <li class="list-group-item">Product name: Ultrasonic Distance Sensor - 3V or 5V - HC-SR04 compatible - RCWL-1601</li>
+            <li class="list-group-item">Definition: This allows the arduino to tell how close you are. This is like motion detectors on garage lights, or automatic doors at your favorite retail store. </li>
+            <li class="list-group-item">Product picture: <img class="definitionsimage" src="images/parts/distancesenor.png" /></li>
+          </ul>
 
+          <li class="list-group-item">"LED Lights"</li>
+          <ul>
+            <li class="list-group-item">Product name: Neopixel WS8211 Addressable LED Lights</li>
+            <li class="list-group-item">Definition: These lights are like Christmas tree lights. Each light can be changed to a different color. </li>
+            <li class="list-group-item">Product picture: <img class="definitionsimage" src="images/parts/neopixels.png" /></li>
+          </ul>
+
+          <li class="list-group-item">"Light Dongle"</li>
+          <ul>
+            <li class="list-group-item">Product name: FadeCandy</li>
+            <li class="list-group-item">Definition: This tells the lights which individual lights to light up and what color. It’s like a remote for the lights but controlled from the computer. </li>
+            <li class="list-group-item">Product picture: <img class="definitionsimage" src="images/parts/fadecandy.png" /></li>
+          </ul>
+
+          <li class="list-group-item">"Computer"</li>
+          <ul>
+            <li class="list-group-item">Product name: Mac Mini</li>
+            <li class="list-group-item">Definition: When you program, or code, you provide instructions for the computer to follow. Many programmers write code in text, meaning that they type it out on the keyboard. <a href="https://docs.google.com/document/d/1LHJnxZBPxJXhrWPvnwy5N00T7D59MvVFSpnwyVNlp-o/edit">(Google)</a>. On the computer a program is running that listens for the arduinos to say something. It then draws its response on the computer screen and tells the lights to light up. </li>
+            <li class="list-group-item">Product picture: <img class="definitionsimage" src="images/parts/computer.png" /> <sub> isolated mac mini, <a href="https://commons.wikimedia.org/wiki/File:Mac_mini_2012_from_eurekamelon.JPG" target="_blank"><sub>source</sub></a></sub></li>
+          </ul>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
