@@ -16,6 +16,9 @@
 * Python 3
 * CP210x USB to UART Bridge VCP Drivers from SiLabs https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 
+## MAC OS CONFIG SETTINGS
+* Firewall should be on and set to block all incomming connections. 
+
 # Server Requirements
 ## Heroku
 * NodeJS 
