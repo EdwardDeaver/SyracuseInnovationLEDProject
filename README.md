@@ -22,7 +22,7 @@
 # Server Requirements
 ## Heroku
 * NodeJS 
-* Scecret key set in the Heroku instance configuration
+* Secret key set in the Heroku instance configuration
 
 # Website Requirements
 ## Github IO
