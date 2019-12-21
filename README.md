@@ -27,3 +27,14 @@
 # Website Requirements
 ## Github IO
 * Nothing. 
+
+# AWS SETUP
+* Sign up for AWS
+* Create an IAM User in the group for DynamoDB access, copy your Key and Access key to a text file to use later 
+* Install AWS CLI https://aws.amazon.com/cli/
+* Install Boto3 https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html
+* Run 'aws configure' Put in your AWS Access key and other key there, and set region to us-east-1.
+* Go to DynamoDB and create table with the name 'instalationdata' and the key (string) 'timesent'
+* Now set your table name in the secrets file. 
+
+
