@@ -37,4 +37,9 @@
 * Go to DynamoDB and create table with the name 'instalationdata' and the key (string) 'timesent'
 * Now set your table name in the secrets file. 
 
+# AUTOSTART
+
+* OF App is started by   sudo nano /etc/xdg/lxsession/LXDE-pi/autostart @sh <FULL PATH TO APP>
+* Fadecandy is autoran using this procedure https://learn.adafruit.com/1500-neopixel-led-curtain-with-raspberry-pi-fadecandy/fadecandy-server-setup
+* Pythonscript will be ran by editing rc local. 
 
