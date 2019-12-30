@@ -52,4 +52,5 @@ https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startu
 
 
 * Pythonscript will be ran by cron tab https://www.raspberrypi-spy.co.uk/2013/07/running-a-python-script-at-boot-using-cron/
-
+chmod +x a bashscript that CD's to the python script and runs it
+Make a desktop file for it in the autostartfolder
