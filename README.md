@@ -40,6 +40,10 @@
 # AUTOSTART
 
 * OF App is started by   sudo nano /etc/xdg/lxsession/LXDE-pi/autostart @sh <FULL PATH TO APP>
+  
+I chmod +x The app
+I then made a desktop app for the app in the config autostart folder
+I then used the exec to point to the app . DO NOT NEED A dot in frnt of it. 
 * Fadecandy is autoran using this procedure https://learn.adafruit.com/1500-neopixel-led-curtain-with-raspberry-pi-fadecandy/fadecandy-server-setup
 * Pythonscript will be ran by editing rc local. 
 
