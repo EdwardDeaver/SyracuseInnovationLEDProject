@@ -53,13 +53,13 @@ void ofApp::setup()
         setupOPCLeds("127.0.0.1",7890,stageWidth, stageHeight,numberOfStrips, ledsPerStrip);
 
         // This is all for connecting and setting the serial input.
-        int serial1DevicePort = 2;
-        int serial2DevicePort = 4;
+        int serial1DevicePort = 3;
+        int serial2DevicePort = 6;
         serial1.listDevices();
         vector <ofSerialDeviceInfo> deviceList = serial1.getDeviceList();
         int baud = 115200;
-        serial1.setup(serial1DevicePort, baud); //open the first device
-        serial2.setup(serial2DevicePort, baud); //open the second device
+        serial1.setup("ttyUSB0", baud); //open the first device
+        serial2.setup("ttyUSB1", baud); //open the second device
         bSendSerialMessage = false;
         nTimesRead = 0;
         nBytesRead = 0;
@@ -77,8 +77,7 @@ void ofApp::setup()
       
         myfont.load("OpenSans-Bold.ttf", 20);
         //ONLY ENABLE IF TESTING
-       //  newx1 = 17000;
-       //  newx2 = 17000;
+
         sentMAX = 1;
         sentAmount = 0;
     }
@@ -174,7 +173,7 @@ void ofApp::setupOPCLeds(string IPAddress, int port, int stageWidth, int stageHe
 // Post-conditons: Data is successfully sent to FadeCandy Server on different channels.
 void ofApp::update()
 {
-    int dataDivisionAmount = 1;
+    float dataDivisionAmount = 1;
     
     opcClient.update();
     
@@ -186,12 +185,28 @@ void ofApp::update()
     //Get Serial Data
     // Set the serial data of serial object 1 to newx1.
     if(serial1.available()>0){
-        newx1 =  listenToSerial1(dataDivisionAmount);
+        int temp = listenToSerial1(dataDivisionAmount);
+       // ofLogNotice() << "temp: " << ofToString(temp);
+        if(temp>100){
+
+            newx1 = temp;
+
+         //   ofLogNotice() << "nex1: " << ofToString(newx1);
+        }
     }
     // Set the serial data of serial object 2 to newx2.
     if(serial2.available()>0){
-        newx2 = listenToSerial2(dataDivisionAmount);
-    }
+        int temp = listenToSerial2(dataDivisionAmount);
+        //ofLogNotice() << "temp: " << ofToString(temp);
+        if(temp>100){
+
+            newx2 = temp;
+
+          //  ofLogNotice() << "nex2: " << ofToString(newx2);
+        }    }
+
+
+    
 
 
     
@@ -351,7 +366,7 @@ void ofApp::DrawLinearSquares(int input1, int input2, float topSquareHeight, boo
     }
     BackgroundHold = true;
     if(input1>0){
-        if(input1<6000){
+        if(input1<1400){
             for(int i = starter; i<stripAmount; i++){
                 for(int z = 0; z<70; z++){
                     ofPushMatrix();
@@ -366,7 +381,7 @@ void ofApp::DrawLinearSquares(int input1, int input2, float topSquareHeight, boo
                // ofPopMatrix();
             }
         }
-       if(input1<4000){
+       if(input1<1000){
 
             
            for(int i = starter; i<stripAmount; i++){
@@ -382,7 +397,7 @@ void ofApp::DrawLinearSquares(int input1, int input2, float topSquareHeight, boo
                 // ofPopMatrix();
              }
          }
-        if(input1<2000){
+        if(input1<501){
 //            frequency = 174.614;
 
               for(int i = starter; i<stripAmount; i++){
@@ -399,7 +414,7 @@ void ofApp::DrawLinearSquares(int input1, int input2, float topSquareHeight, boo
                 //  ofPopMatrix();
               }
           }
-        if(input1<500 && input1>0){
+        if(input1<300 && input1>0){
           
            // frequency = 261.626;
               for(int i = starter; i<stripAmount; i++){
@@ -427,51 +442,52 @@ void ofApp::DrawLinearSquares(int input1, int input2, float topSquareHeight, boo
 //              If left is true plays audio for left side. If false, plays for right side
 // Precondition: The sound objects have been created and set.
 // Post-condition: A given volume is set.
-void ofApp::audioPlayBackAtPoint(float input, bool left){
+bool ofApp::audioPlayBackAtPoint(float input, bool left){
     if(left){
-        if(input<=6000 && input>=4000){
+	
+        if(input<=1400 && input>=1000){
             // PLAY 82 HZ
             L82HZTone.setVolume(1);
             L130HZTone.setVolume(0.0);
             L174HZTone.setVolume(0.0);
             L261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
         }
-        if(input<4000 && input>=2000){
+        if(input<1000 && input>=501){
             //PLAY 130 HZ
             L82HZTone.setVolume(0.0);
             L130HZTone.setVolume(1);
             L174HZTone.setVolume(0.0);
             L261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
 
         }
-        if(input<2000 && input>=500){
+        if(input<500 && input>=300){
             //PLAY 174 HZ
             L82HZTone.setVolume(0.0);
             L130HZTone.setVolume(0.0);
             L174HZTone.setVolume(1);
             L261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
         }
-        if(input<500 && input>=1){
+        if(input<300 && input>=1){
             //PLAY 130HZ
             L82HZTone.setVolume(0.0);
             L130HZTone.setVolume(0.0);
             L174HZTone.setVolume(0.0);
             L261HZTone.setVolume(1);
-            return NULL;
+            return false;
 
         }
-        if(input<=0 || input>=6001){
+        if(input<=0 || input>=1401){
             L82HZTone.setVolume(0.0);
             L130HZTone.setVolume(0.0);
             L174HZTone.setVolume(0.0);
             L261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
 
         }
@@ -480,51 +496,52 @@ void ofApp::audioPlayBackAtPoint(float input, bool left){
     // RIGHT
     if(!left){
 
-        if(input<=0 || input>=6001){
+        if(input<=0 || input>=1401){
              R130HZTone.setVolume(0.0);
              R82HZTone.setVolume(0.0);
              R174HZTone.setVolume(0.0);
              R261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
          }
-        if(input<=6000 && input>=4000){
+        if(input<=1400 && input>=1000){
             // PLAY 82 HZ
             R130HZTone.setVolume(0.0);
             R82HZTone.setVolume(1);
             R174HZTone.setVolume(0.0);
             R261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
         }
-        if(input<4000 && input>=2000){
+        if(input<1000 && input>=501){
             // PLAY 130 HZ
             R82HZTone.setVolume(0.0);
             R130HZTone.setVolume(1);
             R174HZTone.setVolume(0.0);
             R261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
         }
-        if(input<2000 && input>=500){
+        if(input<500 && input>=300){
             // PLAY 174.641 HZ
             R82HZTone.setVolume(0.0);
             R130HZTone.setVolume(0.0);
             R174HZTone.setVolume(1);
             R261HZTone.setVolume(0.0);
-            return NULL;
+            return false;
 
 
         }
-        if(input<500 && input>=1){
+        if(input<300 && input>=1){
             // PLAY 174 HZ
             R82HZTone.setVolume(0.0);
             R130HZTone.setVolume(0.0);
             R174HZTone.setVolume(0.0);
             R261HZTone.setVolume(1);
-            return NULL;
+            return false;
 
 
         }
     }
+    return true;
     
 }
 
@@ -535,7 +552,7 @@ void ofApp::audioPlayBackAtPoint(float input, bool left){
 // Description: Listens for input on serial input 1.
 // Pre-conditions: serial1 has been initialized, newx1 has been declared a global variable, and divisionAmount is an int.
 // Post-conditions: newx1 is returned as a float.
-float ofApp::listenToSerial1(int divisionAmount)
+float ofApp::listenToSerial1(float divisionAmount)
 {
 
     nTimesRead = 0;
@@ -564,7 +581,7 @@ float ofApp::listenToSerial1(int divisionAmount)
 // Description: Listens for input on serial input 2.
 // Pre-conditions: serial2 has been initialized, newx2 has been declared a global variable, and divisionAmount is an int.
 // Post-conditions: newx2 is returned as a float.
-float ofApp::listenToSerial2(int divisionAmount)
+float ofApp::listenToSerial2(float divisionAmount)
 {
 
     nTimesRead = 0;
@@ -606,77 +623,3 @@ int ofApp::sendToUDP(float sensor1, float sensor2, int timeSent){
     udpConnection.Send(json.c_str(),json.length());
     return 100;
 }
-
-
-
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-// Unused code that might be used again
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-
-/*
-          // ofDrawRectangle(0, 0,newx1, 50);
-     // ofSeedRandom(0);
-     
-      for(int i = (opcClient.getStageWidth()/numberOfStrips/3.5); i < opcClient.getStageWidth(); i=i+(opcClient.getStageWidth()/numberOfStrips)){
-        //   ofSetColor((int)ofRandom(0,255), x,x*2, 255); // contour (stroke) color
-         //ofTranslate(50+i, 50, 0);
-
-         // int movement = 1;
-
-         //  ofDrawRectangle(100+i, 100, 100, 100);
-          for(int z = opcClient.getStageCenterY()-(30*9); z < i*100; z=z+100){
-    //           ofPushMatrix();
-       ///
-      //         ofPushStyle();
-                 ofSetColor(z*ofGetElapsedTimeMillis()%movement*i, z,z+movement, 255); // contour (stroke) color
-               //ofTranslate(50+i, 50, 0);
-
-
-                 ofDrawRectangle(100+i, 100+z, 100, 100);
-               ofPopMatrix();
-               ofPopStyle();
-               movement= movement+20;
-
-
-           }
-
-    
-}
-}
-
-*/
-////////////////////////////////////////////////////////////////////////////////
-
-/*
-       BackgroundHold = false;
-       ofEnableBlendMode(OF_BLENDMODE_ADD);
-          ofFill();
-          // ofDrawRectangle(0, 0,newx1, 50);
-     // ofSeedRandom(0);
-       
-      for(int i = (opcClient.getStageWidth()/numberOfStrips/3.5); i < opcClient.getStageWidth(); i=i+(opcClient.getStageWidth()/numberOfStrips)){
-        //   ofSetColor((int)ofRandom(0,255), x,x*2, 255); // contour (stroke) color
-         //ofTranslate(50+i, 50, 0);
-
-         // int movement = 1;
-
-         //  ofDrawRectangle(100+i, 100, 100, 100);
-          for(int z = opcClient.getStageCenterY()-(30*9); z < x*100; z=z+100){
-    //           ofPushMatrix();
-       ///
-      //         ofPushStyle();
-                 ofSetColor(z*ofGetElapsedTimeMillis()%movement*i, z,z+movement, 255); // contour (stroke) color
-               //ofTranslate(50+i, 50, 0);
-
-
-                 ofDrawRectangle(100+i, 100+z, 100, 100);
-               ofPopMatrix();
-               ofPopStyle();
-               movement= movement+20;
-
-
-           }
-
-    //   ofRotateYDeg(i);
-   */
