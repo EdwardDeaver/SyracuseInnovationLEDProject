@@ -25,19 +25,29 @@ void setup() {
 // 10000 == 60 inches
 // 15000 == 90 inches
 void loop() {
-     
+        int temp = 0;
+        temp = GetDistanceData();
+        temp = temp/2;
+        if(temp<3000){
+
        // Adds current reading to total
-      total = total + GetDistanceData();
+      total = total + temp;
       // next input count:
       readIndex = readIndex + 1;
      // if we're at the max number of readings
       if (readIndex >= numReadings) {
         // calculate the average:
-        average = total / numReadings;        
-        Serial.println(average);
+        average = total / numReadings; 
+        int avwrageByte =  average; 
+        if(avwrageByte >100){
+
+                  Serial.print(avwrageByte);
+
+        }
         readIndex = 0;
         total = 0;
       }
+        }
       delay(40);
 }
 //
